@@ -28,13 +28,36 @@ function clean_blog_setup_theme(){
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
     add_theme_support( 'post-thumbnails' );
+
+    add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
+
+    $args = array(
+        'width'         => 1920,
+        'height'        => 450,
+        'default-image' => get_template_directory_uri() . '/img/home-bg.jpg',
+    );
+    add_theme_support( 'custom-header', $args );
+
+    $defaults = array(
+        'default-color'          => '',
+        'default-image'          => '',
+        'default-repeat'         => 'repeat',
+        'default-position-x'     => 'left',
+            'default-position-y'     => 'top',
+            'default-size'           => 'auto',
+        'default-attachment'     => 'scroll',
+        'wp-head-callback'       => '_custom_background_cb',
+        'admin-head-callback'    => '',
+        'admin-preview-callback' => ''
+    );
+    add_theme_support( 'custom-background', $defaults );
     
 
     // Add theme support for Custom Logo.
 	add_theme_support(
 		'custom-logo', array(
-			'width'      => 250,
-			'height'     => 250,
+			'width'      => 60,
+			'height'     => 60,
 			'flex-width' => true,
 		)
     );
@@ -61,6 +84,8 @@ function clean_blog_theme_scripts() {
     $min = ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
 
 // CSS 
+
+    wp_enqueue_style( 'clean-blog-stylesheet', get_stylesheet_uri() );
 
     wp_enqueue_style( 'clean-blog-bootstrap-css', get_template_directory_uri() . '/vendor/bootstrap/css/bootstrap' . $min . '.css' );
     wp_enqueue_style( 'clean-blog-font-awesome-css', get_template_directory_uri() . '/vendor/font-awesome/css/font-awesome' . $min . '.css' );
@@ -101,3 +126,22 @@ function clean_blog_menu_add_class( $atts, $item, $args ) {
     return $atts;
 }
 
+
+if ( ! function_exists( 'clean_blog_posted_on' ) ) :
+	/**
+	 * Prints HTML with meta information for the current post-date/time and author.
+	 */
+	function clean_blog_posted_on() {
+
+        $byline = sprintf( 
+            /* translators: %1$s: post author, $2$s: post date */
+            __( 'Posted by %1$s on %2$s ', 'clean-blog' ), '<a href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . get_the_author() . '</a>', get_the_date()
+        );
+
+		// Finally, let's write all of this to the page.
+		echo '<p class="post-meta">' . $byline . '</p>';
+	}
+endif;
+
+
+require get_template_directory() . '/inc/hooks.php';

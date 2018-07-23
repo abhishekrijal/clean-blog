@@ -29,8 +29,7 @@
 
           <!-- Pager -->
           <div class="clearfix">
-            <?php the_posts_navigation( array( 'prev_text' => __( 'Older Posts &rarr;', 'clean-blog' ), 'next_text' => __( 'Newer Posts', 'clean-blog' ), 'screen_reader_text' => __('Navigation', 'clean-blog' ) ) ); ?>
-            <?php // the_posts_pagination(); ?>
+          <?php the_posts_navigation( array( 'prev_text' => __( 'Older Posts &rarr;', 'clean-blog' ), 'next_text' => __( 'Newer Posts', 'clean-blog' ), 'screen_reader_text' => __('Navigation', 'clean-blog' ) ) ); ?>
           </div>
         </div>
       </div>
