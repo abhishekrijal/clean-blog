@@ -35,7 +35,8 @@
                 </a>
               </li>
             </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
+            <?php $copyright_text = get_theme_mod( 'clean_blog_footer_copyright_text', __( 'Copyright &copy; Your Website 2018', 'clean-blog' ) ); ?>
+            <p class="copyright text-muted"><?php echo esc_html( $copyright_text ) ?></p>
           </div>
         </div>
       </div>

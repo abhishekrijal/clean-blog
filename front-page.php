@@ -1,9 +1,8 @@
-<?php 
+<?php
 /**
- * Page template default for our theme.
+ * Front Page Template.
  * @package Clean_Blog
  */
-
 get_header(); ?>
 
     <!-- Main Content -->

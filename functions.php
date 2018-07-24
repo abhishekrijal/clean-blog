@@ -145,3 +145,8 @@ endif;
 
 
 require get_template_directory() . '/inc/hooks.php';
+
+// Theme Customizer Settings.
+
+require get_template_directory() . '/inc/customizer-init.php';
+
