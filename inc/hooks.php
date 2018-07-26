@@ -13,7 +13,6 @@ if ( ! function_exists( 'clean_blog_header' ) ) :
         $desc = '';
         $bg_image = get_header_image();
 
-      
         if ( is_singular() || is_page() ) {
 
             global $post;
@@ -44,7 +43,11 @@ if ( ! function_exists( 'clean_blog_header' ) ) :
             $desc = '';
         }
 
+        if ( is_front_page() ) :
 
+            do_action('clean_blog_front_page_slider');
+
+        else :
 
         ?> 
 
@@ -63,6 +66,8 @@ if ( ! function_exists( 'clean_blog_header' ) ) :
             </header>
 
         <?php
+
+        endif;
     }
 
     add_action( 'clean_blog_header_part', 'clean_blog_header' );

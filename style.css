@@ -17,3 +17,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
 img {
     max-width: 100%;
 }
+
+#front-page-slider img {
+    max-width: unset;
+    width: 100%;
+}
