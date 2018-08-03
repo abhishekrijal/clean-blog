@@ -153,8 +153,33 @@ function clean_blog_customizer_settings( $wp_customize ) {
             'active_callback' => 'clean_blog_slider_is_posts_selected',
         )
     ) );
+    
 
+    /**
+     * About Section
+     */
 
+    $wp_customize->add_section( 'clean_blog_front_page_about_section', array(
+        'priority'       => 10,
+        'panel'          => 'clean_blog_theme_options',
+        'capability'     => 'edit_theme_options',
+        'title'          => __( 'Front Page About Section', 'clean-blog' ),
+        'description'    => __( 'Manage Options for front page About Us', 'clean-blog' ),
+    ) );
+
+    $wp_customize->add_setting( 'clean_blog_about_section_page_id', array(
+        'capability'     => 'edit_theme_options',
+        'default'        => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+
+    $wp_customize->add_control( 'clean_blog_about_section_page_id', array(
+        'type'         => 'dropdown-pages',
+        'settings'     => 'clean_blog_about_section_page_id',
+        'section'      => 'clean_blog_front_page_about_section',
+        'label'        => __( 'About Section page', 'clean-blog' ),
+
+    ) );
 
 }
 add_action( 'customize_register', 'clean_blog_customizer_settings' );

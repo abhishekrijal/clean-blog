@@ -70,6 +70,26 @@ function clean_blog_setup_theme(){
 		)
     );
 
+    register_sidebar( array(
+        'name'          => __( 'Primary Sidebar', 'clean-blog' ),
+        'id'            => 'clean-blog-primary-sidebar',    // ID should be LOWERCASE  ! ! !
+        'description'   => __('Primary Sidebar for our theme', 'clean-blog'),
+        'class'         => '',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widgettitle">',
+        'after_title'   => '</h2>' ) );
+
+    register_sidebars( 4 , array(
+        'name'          => __( 'Footer Widget # %s', 'clean-blog' ),
+        'id'            => 'clean-blog-primary-sidebar',    // ID should be LOWERCASE  ! ! !
+        'description'   => __('Footer Widget for our theme', 'clean-blog'),
+        'class'         => '',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widgettitle">',
+        'after_title'   => '</h2>' ) );
+
 }
 
 add_action( 'after_setup_theme', 'clean_blog_setup_theme' );
@@ -154,4 +174,8 @@ require get_template_directory() . '/inc/hooks.php';
 // Theme Customizer Settings.
 
 require get_template_directory() . '/inc/customizer-init.php';
+
+// Theme widgets.
+
+require get_template_directory() . '/inc/widgets.php';
 

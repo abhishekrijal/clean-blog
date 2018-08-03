@@ -35,6 +35,8 @@ function clean_blog_front_page_slider() {
                 $i++;
                 endwhile;
 
+                wp_reset_postdata();
+
             endif;
  
         }

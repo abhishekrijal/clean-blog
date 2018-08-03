@@ -73,3 +73,61 @@ if ( ! function_exists( 'clean_blog_header' ) ) :
     add_action( 'clean_blog_header_part', 'clean_blog_header' );
 
 endif;
+
+
+if ( ! function_exists( 'clean_blog_front_page_about_section' ) ) :
+
+    /**
+     * clean_blog_front_page_about_section add about section in front page.
+     *
+     * @return void
+     */
+    function clean_blog_front_page_about_section() {
+
+        $about_page_id = get_theme_mod( 'clean_blog_about_section_page_id', false );
+
+        if ( ! $about_page_id ) {
+            return;
+        }
+
+        $page = get_posts( array( 'post_type' => 'page',  'p' => $about_page_id ) );
+
+        if ( ! $page ) {
+            return;
+        }
+
+        $page = $page[0];
+
+        $page_id = $page->ID;
+
+        ?>
+            <div class="containter">
+            <h1><?php echo esc_html( $page->post_title );  ?></h1>
+                <div class="row">
+
+                    <div class="col-xl-6">
+
+                        <img src="<?php get_the_post_thumbnail_url( $page_id, 'full' ); ?>" alt="">
+
+                    </div>
+                    <div class="col-xl-6">
+
+                        <p>
+                        
+                        <?php echo esc_html( wp_trim_words( $page->post_content, 20, '...' ) ) ?>
+                        
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+        <?php
+
+    }
+
+    add_action( 'clean_blog_front_page_sections', 'clean_blog_front_page_about_section' );
+
+endif;

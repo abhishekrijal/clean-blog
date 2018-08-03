@@ -18,6 +18,13 @@ get_header(); ?>
                     endwhile; 
                 ?>
             </div>
+            <?php if ( is_active_sidebar( 'clean-blog-primary-sidebar' ) ) : ?>
+                <div class="col-lg-4">
+                
+                    <?php dynamic_sidebar( 'clean-blog-primary-sidebar' ) ?>
+                
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 

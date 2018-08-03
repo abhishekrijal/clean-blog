@@ -9,6 +9,11 @@ get_header(); ?>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
+            <?php
+                do_action( 'clean_blog_front_page_sections' );
+            ?>
+            </div>
+            <div class="col-lg-8 col-md-10 mx-auto">
                 <?php
                     while( have_posts() ) : the_post();
 
